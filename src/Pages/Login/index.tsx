@@ -57,11 +57,7 @@ const Login = () => {
         behavior={Platform.OS == "ios" ? "padding" : undefined}
       >
         <Appbar>
-          <Appbar.Action
-            style={styles.topright}
-            icon="account-plus"
-            onPress={handleNovoUsuario}
-          />
+          <Appbar.Content title='Login'/>
         </Appbar>
         <View style={styles.body}>
           <View style={styles.Titulo}>
@@ -75,6 +71,8 @@ const Login = () => {
               label="Login"
               onChangeText={setUsuario}
               mode="outlined"
+              autoCorrect={false}
+              autoCapitalize={'none'}
             />
             <TextInput
               style={styles.inputForm}
@@ -83,14 +81,19 @@ const Login = () => {
               mode="outlined"
               onChangeText={setSenha}
               secureTextEntry
+              autoCorrect={false}
             />
 
             {loading ? (
               <ActivityIndicator animating={true} />
-            ) : (
-              <Button icon="login" mode="contained" onPress={handleLogin}>
+            ) : (<>
+              <Button style={{marginBottom:10}} icon="login" mode="contained" onPress={handleLogin}>
                 Entrar
               </Button>
+              <Button icon="account-plus" mode="outlined" onPress={handleNovoUsuario}>
+                Criar conta
+              </Button>
+             </> 
             )}
             <Text style={{color:'#A00'}}>{erro}</Text>
           </View>
